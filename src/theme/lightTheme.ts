@@ -16,7 +16,8 @@ const LightTheme: ExtendedTheme = {
     error: 'rgb(255,51,51)',
     info: 'rgbrgb(91, 192, 222)',
     success: 'rgb(92, 184, 92)',
-    warning: 'rgb(240, 173, 78)	',
+    warning: 'rgb(240, 173, 78)',
+    sunshine: 'rgb(244, 215, 114)',
   },
 };
 

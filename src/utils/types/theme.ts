@@ -20,7 +20,8 @@ export type ThemeColors =
   | 'warning'
   | 'success'
   | 'info'
-  | 'border';
+  | 'border'
+  | 'sunshine';
 
 declare module '@react-navigation/native' {
   export function useTheme(): ExtendedTheme;
