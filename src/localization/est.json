@@ -1,4 +1,6 @@
 {
   "hello": "Tere",
-  "screens.home.header.title": "Minu Nimekirjad"
+  "screens.home.header.title": "Minu Nimekirjad",
+  "components.footer.new-item": "Uus Ese",
+  "components.footer.new-list": "Uus Nimekiri"
 }
