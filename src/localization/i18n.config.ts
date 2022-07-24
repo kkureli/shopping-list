@@ -21,4 +21,6 @@ i18n.use(initReactI18next).init({
   fallbackLng: 'en',
 });
 
+export const getCurrentLanguage = () => i18n.language;
+
 export default i18n;
