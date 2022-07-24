@@ -1,4 +1,6 @@
 {
   "hello": "Hello",
-  "screens.home.header.title": "My Lists"
+  "screens.home.header.title": "My Lists",
+  "components.footer.new-item": "New Item",
+  "components.footer.new-list": "New List"
 }

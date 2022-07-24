@@ -1,4 +1,6 @@
 {
   "hello": "Merhaba",
-  "screens.home.header.title": "Listelerim"
+  "screens.home.header.title": "Listelerim",
+  "components.footer.new-item": "Yeni Öğe",
+  "components.footer.new-list": "Yeni Liste"
 }
