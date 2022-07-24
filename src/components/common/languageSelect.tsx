@@ -1,7 +1,7 @@
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import Popover from 'react-native-popover-view';
-import {appLanguages} from '../../config/constants';
+import {appLanguages} from '../../data/constants';
 import Icon from './icon';
 import SelectableItemRow from './selectableItemRow';
 
