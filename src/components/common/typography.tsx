@@ -51,7 +51,7 @@ const Typography = (props: TypographyProps) => {
       fontWeight: Theme.WEIGHTS.regular,
       fontSize: Theme.SIZES.font,
       color: colors.text,
-      //   fontFamily: Theme.FONTFAMILY.fontFamily,
+      fontFamily: Theme.FONTFAMILY.fontFamily,
     },
     h1 && Theme.FONTS.h1,
     h2 && Theme.FONTS.h2,
