@@ -2,5 +2,10 @@
   "hello": "Merhaba",
   "screens.home.header.title": "Listelerim",
   "components.footer.new-item": "Yeni Öğe",
-  "components.footer.new-list": "Yeni Liste"
+  "components.footer.new-list": "Yeni Liste",
+  "common.cancel": "İptal",
+  "common.add": "Ekle",
+  "common.new-item": "Yeni Öğe",
+  "common.new-list": "Yeni Liste",
+  "common.title": "Başlık"
 }

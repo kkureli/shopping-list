@@ -1,4 +1,10 @@
+import {LanguagesLabels, LanguagesValues} from '../utils/enums/language';
+import {
+  ListTitleIconColorsCodes,
+  ListTitleIconColorsOptions,
+} from '../utils/enums/listTitleIconColors';
 import {LanguageType} from '../utils/types/language';
+import {ListTitleIconColorType} from '../utils/types/listTitleIconColor';
 
 const usaFlag = require('../assets/images/countries/usa.png');
 const trFlag = require('../assets/images/countries/turkey.png');
@@ -6,18 +12,49 @@ const estFlag = require('../assets/images/countries/estonia.png');
 
 export const appLanguages: LanguageType[] = [
   {
-    label: 'USA',
+    label: LanguagesLabels.USA,
     img: usaFlag,
-    value: 'en',
+    value: LanguagesValues.USA,
   },
   {
-    label: 'EST',
+    label: LanguagesLabels.EST,
     img: estFlag,
-    value: 'est',
+    value: LanguagesValues.EST,
   },
   {
-    label: 'TR',
+    label: LanguagesLabels.TR,
     img: trFlag,
-    value: 'tr',
+    value: LanguagesValues.TR,
+  },
+];
+
+export const listTitleIconColors: ListTitleIconColorType[] = [
+  {
+    name: ListTitleIconColorsOptions.Red,
+    rgb: ListTitleIconColorsCodes.Red,
+  },
+  {
+    name: ListTitleIconColorsOptions.Orange,
+    rgb: ListTitleIconColorsCodes.Orange,
+  },
+  {
+    name: ListTitleIconColorsOptions.Yellow,
+    rgb: ListTitleIconColorsCodes.Yellow,
+  },
+  {
+    name: ListTitleIconColorsOptions.Green,
+    rgb: ListTitleIconColorsCodes.Green,
+  },
+  {
+    name: ListTitleIconColorsOptions.Blue,
+    rgb: ListTitleIconColorsCodes.Blue,
+  },
+  {
+    name: ListTitleIconColorsOptions.Purple,
+    rgb: ListTitleIconColorsCodes.Purple,
+  },
+  {
+    name: ListTitleIconColorsOptions.Brown,
+    rgb: ListTitleIconColorsCodes.Brown,
   },
 ];

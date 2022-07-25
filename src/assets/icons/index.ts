@@ -1,6 +1,7 @@
 import CheckIcon from './CheckIcon';
 import CloseIcon from './CloseIcon';
 import GlobeIcon from './GlobaIcon';
+import ListIcon from './ListIcon';
 import MoonIcon from './MoonIcon';
 import PlusIcon from './PlusIcon';
 import SunIcon from './SunIcon';
@@ -12,4 +13,5 @@ export default {
   Check: CheckIcon,
   Plus: PlusIcon,
   Close: CloseIcon,
+  List: ListIcon,
 };

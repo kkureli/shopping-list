@@ -2,5 +2,10 @@
   "hello": "Tere",
   "screens.home.header.title": "Minu Nimekirjad",
   "components.footer.new-item": "Uus Ese",
-  "components.footer.new-list": "Uus Nimekiri"
+  "components.footer.new-list": "Uus Nimekiri",
+  "common.cancel": "Tühistada",
+  "common.add": "Lisama",
+  "common.new-item": "Uus Ese",
+  "common.new-list": "Uus Nimekiri",
+  "common.title": "Pealkiri"
 }

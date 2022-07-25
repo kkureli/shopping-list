@@ -7,6 +7,7 @@ import {LightTheme, DarkTheme} from '../theme';
 import {RootState} from '../redux/store';
 import {ThemeMode} from '../utils/enums/theme';
 import {navigationRef} from './rootNavigation';
+import {Wrapper} from '../views';
 
 const AppNavigation: FC = () => {
   const theme = useSelector((state: RootState) => state.theme);
@@ -16,6 +17,7 @@ const AppNavigation: FC = () => {
       ref={navigationRef}
       theme={theme.mode === ThemeMode.LIGHT ? LightTheme : DarkTheme}>
       <StackNavigation />
+      <Wrapper />
     </NavigationContainer>
   );
 };

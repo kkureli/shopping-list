@@ -1,7 +1,8 @@
 import {ImageSourcePropType} from 'react-native';
+import {LanguagesLabels, LanguagesValues} from '../enums/language';
 
 export type LanguageType = {
-  label: string;
+  label: LanguagesLabels;
   img: ImageSourcePropType;
-  value: string;
+  value: typeof LanguagesValues[keyof typeof LanguagesValues];
 };
