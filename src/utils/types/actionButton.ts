@@ -4,4 +4,5 @@ export type ActionButtonProps = {
   text: string;
   icon?: IconTypes;
   onPress: () => void;
+  disabled?: boolean;
 };

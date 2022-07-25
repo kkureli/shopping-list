@@ -14,7 +14,7 @@ const Footer = (props: FooterProps) => {
     <SafeAreaView
       style={[
         {
-          borderColor: colors.gray,
+          borderTopColor: colors.border,
         },
         styles.footer,
       ]}>

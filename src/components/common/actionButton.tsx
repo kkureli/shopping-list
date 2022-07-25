@@ -5,11 +5,18 @@ import {ActionButtonProps} from '../../utils/types/actionButton';
 import Icon from './icon';
 
 const ActionButton = (props: ActionButtonProps) => {
-  const {text, onPress, icon} = props;
+  const {text, onPress, icon, disabled} = props;
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity
+      disabled={disabled}
+      style={styles.container}
+      onPress={onPress}>
       {icon && <Icon icon={icon} />}
-      <Typography bold primary style={icon && styles.marginLeft5}>
+      <Typography
+        bold
+        primary
+        gray={disabled}
+        style={icon && styles.marginLeft5}>
         {text}
       </Typography>
     </TouchableOpacity>

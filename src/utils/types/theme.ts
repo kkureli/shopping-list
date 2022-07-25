@@ -21,7 +21,10 @@ export type ThemeColors =
   | 'success'
   | 'info'
   | 'border'
-  | 'sunshine';
+  | 'sunshine'
+  | 'inputContainer'
+  | 'lightGrayBG'
+  | 'select';
 
 declare module '@react-navigation/native' {
   export function useTheme(): ExtendedTheme;

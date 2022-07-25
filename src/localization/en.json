@@ -2,5 +2,10 @@
   "hello": "Hello",
   "screens.home.header.title": "My Lists",
   "components.footer.new-item": "New Item",
-  "components.footer.new-list": "New List"
+  "components.footer.new-list": "New List",
+  "common.cancel": "Cancel",
+  "common.add": "Add",
+  "common.new-item": "New Item",
+  "common.new-list": "New List",
+  "common.title": "Title"
 }
