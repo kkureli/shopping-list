@@ -81,17 +81,16 @@ const ItemsList = (props: ItemsListProps) => {
 
   return (
     <>
-      {itemsList?.length === 0 ? (
-        <Empty message={t('common.no-item-message')} />
-      ) : (
-        <SwipableListView
-          swipeListViewRef={swipeListViewRef}
-          renderFrontItem={renderItem}
-          lists={itemsList ?? []}
-          handleDelete={handleDelete}
-          handleInfo={handleInfo}
-        />
-      )}
+      <SwipableListView
+        ListEmptyComponent={() => (
+          <Empty message={t('common.no-item-message')} />
+        )}
+        swipeListViewRef={swipeListViewRef}
+        renderFrontItem={renderItem}
+        lists={itemsList ?? []}
+        handleDelete={handleDelete}
+        handleInfo={handleInfo}
+      />
       <NewItemBottomSheet sheetRef={refRBSheetItem} />
       <Footer onNewItemPress={onNewItemPress} canAddList={false} />
     </>
