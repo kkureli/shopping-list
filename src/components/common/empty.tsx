@@ -20,5 +20,8 @@ const Empty = (props: Props) => {
 export default Empty;
 
 const styles = StyleSheet.create({
-  container: {flex: 1, justifyContent: 'center'},
+  container: {
+    justifyContent: 'center',
+    marginTop: 15,
+  },
 });

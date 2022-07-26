@@ -12,6 +12,8 @@ type Props = {
   handleDelete?: (item: any) => void;
   lists: any[];
   swipeListViewRef?: any;
+  ListEmptyComponent: () => JSX.Element;
+  ListHeaderComponent?: () => JSX.Element;
 };
 const hiddenButtonWidth = 75;
 const openWidth = hiddenButtonWidth * 2;
@@ -25,6 +27,8 @@ const SwipableListView = (props: Props) => {
     handleDelete,
     lists,
     swipeListViewRef,
+    ListEmptyComponent,
+    ListHeaderComponent,
   } = props;
 
   const renderHiddenItem = ({item}: {item: any}) => {
@@ -62,6 +66,8 @@ const SwipableListView = (props: Props) => {
 
   return (
     <SwipeListView
+      ListHeaderComponent={ListHeaderComponent}
+      ListEmptyComponent={ListEmptyComponent}
       ref={swipeListViewRef}
       data={lists}
       renderItem={renderFrontItem}
