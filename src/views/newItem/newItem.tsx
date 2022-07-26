@@ -25,8 +25,6 @@ const NewItemBottomSheet = (props: Props) => {
     (state: RootState) => state.selections.selectedItem,
   );
 
-  console.log('selectedItem:', selectedItem);
-
   const selectedList = useSelector(
     (state: RootState) => state.selections.selectedList,
   );
