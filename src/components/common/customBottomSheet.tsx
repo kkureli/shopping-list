@@ -22,7 +22,6 @@ const CustomBottomSheet = ({
     <RBSheet
       closeOnDragDown={true}
       onOpen={onOpen}
-      keyboardAvoidingViewEnabled={true}
       ref={sheetRef}
       height={bottomSheetHeight}
       openDuration={500}
@@ -44,11 +43,7 @@ const CustomBottomSheet = ({
         </Typography>
       )}
 
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={[styles.paddingBottom48]}>
-        {renderContent()}
-      </ScrollView>
+      <View style={styles.contentContainerStyle}>{renderContent()}</View>
       {renderFooter ? (
         <View style={styles.footerCommon}>{renderFooter()}</View>
       ) : null}
@@ -62,8 +57,9 @@ const styles = StyleSheet.create({
     paddingTop: 24,
   },
 
-  paddingBottom48: {
+  contentContainerStyle: {
     paddingBottom: 48,
+    flex: 1,
   },
 });
 

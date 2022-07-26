@@ -1,5 +1,5 @@
 import {View, StyleSheet} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import CustomBottomSheet from '../../components/common/customBottomSheet';
 import NewItemBottomSheetHeader from '../../components/newItem/header';
 import TextInput from '../../components/common/textInput';
@@ -18,6 +18,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {onAddListType} from '../../redux/types';
 import {RootState} from '../../redux/store';
 import {clearSelectedList} from '../../redux/selectedItemSlice';
+import Dropdown, {SelectItemType} from '../../components/common/dropdown';
+import {List} from '../../models/list.model';
 
 type Props = Pick<CustomBottomSheetProps, 'sheetRef' | 'onClose'>;
 
@@ -33,6 +35,38 @@ const NewListBottomSheet = (props: Props) => {
   const selectedList = useSelector(
     (state: RootState) => state.selections.selectedList,
   );
+  const lists = useSelector((state: RootState) => state.list.lists);
+
+  const [debounceResult, setDebounceResult] = useState('');
+
+  const handleChangeDebounce = (value: string) => {
+    setDebounceResult(value);
+  };
+
+  const searchResultsLists = useMemo(() => {
+    if (input) {
+      const filteredWords = lists
+        ?.filter((list: List) =>
+          list.title.toLocaleLowerCase().includes(input.toLocaleLowerCase()),
+        )
+        ?.map((item: List): SelectItemType => {
+          return {
+            label: item.title,
+            value: item.title,
+          };
+        });
+      const unique = [
+        ...new Map(
+          filteredWords.map((item: any, key) => [item[key], item]),
+        ).values(),
+      ];
+
+      return unique;
+    } else {
+      return [];
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debounceResult, lists]);
 
   useEffect(() => {
     if (selectedList) {
@@ -63,6 +97,21 @@ const NewListBottomSheet = (props: Props) => {
     closeBottomSheet();
   };
 
+  const onSelectWord = (selected: SelectItemType) => {
+    const selectedWord = selected.value;
+
+    const lastIndex = input.lastIndexOf(' ');
+
+    const lastWordRemovedInput = input.substring(0, lastIndex);
+    let updatedInput = '';
+    if (lastWordRemovedInput) {
+      updatedInput = `${input} ${selectedWord}`;
+    } else {
+      updatedInput = `${selectedWord}`;
+    }
+    setInput(updatedInput);
+  };
+
   const renderContent = () => {
     return (
       <View style={styles.contentContainer}>
@@ -75,12 +124,16 @@ const NewListBottomSheet = (props: Props) => {
             color={ListTitleIconColorsCodes[selectedColor]}
           />
           <TextInput
+            handleChangeDebounce={handleChangeDebounce}
             style={styles.input}
             placeholder={t('common.title')}
             value={input}
             onChangeText={setInput}
             autoFocus
           />
+          {searchResultsLists?.length > 0 && (
+            <Dropdown data={searchResultsLists} onSelect={onSelectWord} />
+          )}
         </View>
         <TitleIconColorSelection
           containerStyle={styles.colorSelection}
