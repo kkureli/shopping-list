@@ -7,7 +7,12 @@ import {useTheme} from '@react-navigation/native';
 
 const Footer = (props: FooterProps) => {
   const {t} = useTranslation();
-  const {onNewItemPress, onNewListPress, canAddList} = props;
+  const {
+    onNewItemPress,
+    onNewListPress,
+    canAddList,
+    canAddNewItem = true,
+  } = props;
   const {colors} = useTheme();
 
   return (
@@ -15,15 +20,18 @@ const Footer = (props: FooterProps) => {
       style={[
         {
           borderTopColor: colors.border,
+          backgroundColor: colors.background,
         },
         styles.footer,
       ]}>
       <View style={styles.container}>
-        <ActionButton
-          icon="Plus"
-          onPress={onNewItemPress}
-          text={t('components.footer.new-item')}
-        />
+        {canAddNewItem && (
+          <ActionButton
+            icon="Plus"
+            onPress={onNewItemPress}
+            text={t('components.footer.new-item')}
+          />
+        )}
         {canAddList && onNewListPress && (
           <ActionButton
             onPress={onNewListPress}

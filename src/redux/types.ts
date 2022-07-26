@@ -1,6 +1,11 @@
 import {Item} from '../models/item.model';
 import {List} from '../models/list.model';
 
+export type selectedItemStateType = {
+  selectedList: List | null;
+  selectedItem: Item | null;
+};
+
 export type listsStateType = {
   lists: List[];
 };

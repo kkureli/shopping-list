@@ -1,9 +1,8 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, current} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import {List} from '../models/list.model';
 import {ListTitleIconColorsOptions} from '../utils/enums/listTitleIconColors';
 import {Item, ItemStatus} from '../models/item.model';
-
 import uuid from 'react-native-uuid';
 import {
   onAddItemPayloadType,
@@ -35,7 +34,7 @@ const initialState: listsStateType = {
         {
           createdDate: '12.16.2020, 12:22',
           updatedDate: '12.16.2020, 23:46',
-          status: ItemStatus.PENDING,
+          status: ItemStatus.DONE,
           title: 'apple',
           id: 'test',
         },
@@ -86,7 +85,7 @@ export const listSlice = createSlice({
         createdDate: getCurrentDate(),
       };
 
-      state.lists.map(list =>
+      state.lists = state.lists.map(list =>
         list.id === action.payload.list.id
           ? {...list, items: [addedItem, ...list.items]}
           : list,
@@ -121,23 +120,35 @@ export const listSlice = createSlice({
     },
 
     onDeleteItem: (state, action: PayloadAction<onDeleteItemPayloadType>) => {
-      const selectedList = getSelectedList(state.lists, action.payload.list.id);
+      const currentState = current(state);
+
+      const selectedList = getSelectedList(
+        currentState.lists,
+        action.payload.list.id,
+      );
 
       const updatedListItems = selectedList?.items.filter(
         item => item.id !== action.payload.item.id,
       );
 
-      state.lists = state.lists.map(list =>
-        list.id === action.payload.item.id
-          ? {...selectedList, items: updatedListItems}
-          : list,
-      );
+      return {
+        lists: [
+          ...currentState.lists.map(list =>
+            list.id === action.payload.list.id
+              ? {...selectedList, items: updatedListItems}
+              : list,
+          ),
+        ],
+      };
     },
     onItemStatusChange: (
       state,
       action: PayloadAction<onItemStatusChangePayloadType>,
     ) => {
-      const selectedList = getSelectedList(state.lists, action.payload.list.id);
+      const selectedList = getSelectedList(
+        current(state).lists,
+        action.payload.list.id,
+      );
       const selectedItem = getSelectedItem(
         selectedList?.items,
         action.payload.item.id,
@@ -184,7 +195,14 @@ export const listSlice = createSlice({
   },
 });
 
-export const {onAddList, onUpdateList, onDeleteList, onAddItem} =
-  listSlice.actions;
+export const {
+  onAddList,
+  onUpdateList,
+  onDeleteList,
+  onAddItem,
+  onDeleteItem,
+  onItemStatusChange,
+  onUpdateItem,
+} = listSlice.actions;
 
 export default listSlice.reducer;

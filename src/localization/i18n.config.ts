@@ -18,7 +18,7 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  fallbackLng: 'en',
+  fallbackLng: 'est',
 });
 
 export const getCurrentLanguage = () => i18n.language;

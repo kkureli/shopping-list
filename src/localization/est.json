@@ -1,11 +1,21 @@
 {
-  "hello": "Tere",
-  "screens.home.header.title": "Minu Nimekirjad",
-  "components.footer.new-item": "Uus Ese",
-  "components.footer.new-list": "Uus Nimekiri",
-  "common.cancel": "Tühistada",
   "common.add": "Lisama",
+  "common.cancel": "Tühistada",
+  "common.delete": "Kustutada",
+  "common.delete-list-message": "Nimekiri kustutatakse. Oled sa kindel?",
+  "common.delete-item-message": "Üksus kustutatakse. Oled sa kindel?",
   "common.new-item": "Uus Ese",
   "common.new-list": "Uus Nimekiri",
-  "common.title": "Pealkiri"
+  "common.no-item-message": "Teil ei ole ühtegi üksust",
+  "common.no-list-message": "Sul pole ühtegi nimekirja",
+  "common.title": "Pealkiri",
+  "common.warning": "Ettevaatust",
+  "components.footer.new-item": "Uus Ese",
+  "components.footer.new-list": "Uus Nimekiri",
+  "hello": "Tere",
+  "screens.home.header.title": "Minu Nimekirjad",
+  "screens.items-list.header.title": "Tooted",
+  "common.new-list-update": "Värskenda nimekirja",
+  "common.update": "Värskendada",
+  "common.update-item": "Värskenda Üksust"
 }
