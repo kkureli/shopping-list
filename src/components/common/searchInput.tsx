@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import {useTheme} from '@react-navigation/native';
 
-type SearchInputProps = TextInputProps & {
+export type SearchInputProps = TextInputProps & {
   debounceMiliSeconds?: number;
   handleChangeDebounce: (value: any, event?: any) => void;
   onChangeText: (value: any, event?: any) => void;

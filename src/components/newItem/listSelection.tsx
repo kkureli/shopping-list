@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   popover: {
     width: 150,
-    minHeight: 100,
+    height: 200,
   },
   circle: {
     width: 16,

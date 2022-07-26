@@ -1,17 +1,36 @@
 import {StyleSheet, TextInputProps, TextInput as RNInput} from 'react-native';
-import React from 'react';
+import React, {useCallback} from 'react';
 import {useTheme} from '@react-navigation/native';
 import theme from '../../theme';
+import {SearchInputProps} from './searchInput';
+import _ from 'lodash';
 
-const TextInput = (props: TextInputProps) => {
+const TextInput = (props: TextInputProps & SearchInputProps) => {
   const {colors} = useTheme();
-  const {onChangeText, value, placeholder, style, ...rest} = props;
+  const {
+    onChangeText,
+    value,
+    placeholder,
+    style,
+    handleChangeDebounce,
+    debounceMiliSeconds = 300,
+    ...rest
+  } = props;
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedHandler = useCallback(
+    _.debounce(handleChangeDebounce, debounceMiliSeconds),
+    [handleChangeDebounce],
+  );
   return (
     <RNInput
       returnKeyType="done"
       placeholderTextColor={colors.text}
       selectionColor={colors.primary}
-      onChangeText={onChangeText}
+      onChangeText={text => {
+        onChangeText(text);
+        debouncedHandler(text);
+      }}
       value={value}
       placeholder={placeholder}
       clearButtonMode="while-editing"
