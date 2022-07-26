@@ -1,10 +1,10 @@
-import {FlexStyle, StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ViewStyle} from 'react-native';
 import React from 'react';
 import {ListTitleIconColor} from '../../utils/types/listTitleIconColor';
 
 type Props = {
-  style?: FlexStyle;
-  color: ListTitleIconColor;
+  style?: ViewStyle;
+  color?: ListTitleIconColor;
 };
 
 const Circle = (props: Props) => {
@@ -14,10 +14,10 @@ const Circle = (props: Props) => {
     <View
       style={[
         styles.container,
-        style,
         {
           backgroundColor: color,
         },
+        style,
       ]}
     />
   );

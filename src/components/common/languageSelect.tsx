@@ -4,7 +4,6 @@ import Popover from 'react-native-popover-view';
 import {appLanguages} from '../../data/constants';
 import Icon from './icon';
 import SelectableItemRow from './selectableItemRow';
-
 import {LanguageType} from '../../utils/types/language';
 import Seperator from './seperator';
 import {FlatList} from './flatList';

@@ -1,4 +1,4 @@
-import {ImageSourcePropType} from 'react-native';
+import {ImageSourcePropType, ViewStyle} from 'react-native';
 import {IconTypes} from './icon';
 
 export type SelectableItemProps = {
@@ -8,4 +8,6 @@ export type SelectableItemProps = {
   img?: ImageSourcePropType;
   value: string;
   selectedKey?: string;
+  renderLeft?: () => JSX.Element;
+  style?: ViewStyle;
 };

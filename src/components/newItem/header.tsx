@@ -9,12 +9,13 @@ type Props = {
   onCancelPress: () => void;
   onAddPress: () => void;
   title?: string;
+  isUpdate?: boolean;
 };
 
 const NewItemBottomSheetHeader = (props: Props) => {
   const {t} = useTranslation();
 
-  const {isAddDisabled, onAddPress, onCancelPress, title} = props;
+  const {isAddDisabled, onAddPress, onCancelPress, title, isUpdate} = props;
   return (
     <View style={styles.headerRow}>
       <ActionButton text={t('common.cancel')} onPress={onCancelPress} />
@@ -23,7 +24,7 @@ const NewItemBottomSheetHeader = (props: Props) => {
       </Typography>
       <ActionButton
         disabled={isAddDisabled}
-        text={t('common.add')}
+        text={isUpdate ? t('common.update') : t('common.add')}
         onPress={onAddPress}
       />
     </View>

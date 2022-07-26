@@ -1,12 +1,12 @@
 import {StyleSheet, TouchableOpacity, ViewStyle} from 'react-native';
 import React from 'react';
-import {FlatList} from '../flatList';
-import {listTitleIconColors} from '../../../data/constants';
-import Circle from '../circle';
-import {ListTitleIconColorType} from '../../../utils/types/listTitleIconColor';
-import {ListTitleIconColorsOptions} from '../../../utils/enums/listTitleIconColors';
+import {FlatList} from '../common/flatList';
+import {listTitleIconColors} from '../../data/constants';
+import Circle from '../common/circle';
+import {ListTitleIconColorType} from '../../utils/types/listTitleIconColor';
+import {ListTitleIconColorsOptions} from '../../utils/enums/listTitleIconColors';
 import {useTheme} from '@react-navigation/native';
-import theme from '../../../theme';
+import theme from '../../theme';
 
 type Props = {
   selectedColor: ListTitleIconColorsOptions;

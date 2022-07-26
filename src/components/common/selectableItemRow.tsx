@@ -5,11 +5,15 @@ import Icon from './icon';
 import Typography from './typography';
 
 const SelectableItemRow = (props: SelectableItemProps) => {
-  const {icon, value, label, onSelect, img, selectedKey} = props;
+  const {icon, value, label, onSelect, img, selectedKey, renderLeft, style} =
+    props;
 
   return (
-    <TouchableOpacity style={styles.container} onPress={() => onSelect(value)}>
+    <TouchableOpacity
+      style={[styles.container, style]}
+      onPress={() => onSelect(value)}>
       <View>
+        {renderLeft && renderLeft()}
         {icon && <Icon icon={icon} />}
         {img && <Image source={img} style={styles.img} />}
       </View>

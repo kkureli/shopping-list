@@ -1,11 +1,11 @@
 import {View, StyleSheet} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CustomBottomSheet from '../../components/common/customBottomSheet';
 import NewItemBottomSheetHeader from '../../components/newItem/header';
 import TextInput from '../../components/common/textInput';
 import {useTranslation} from 'react-i18next';
 import {CustomBottomSheetProps} from '../../utils/types/custombottomSheet';
-import TitleIconColorSelection from '../../components/common/newList/titleIconColorSelection';
+import TitleIconColorSelection from '../../components/newList/titleIconColorSelection';
 import Icon from '../../components/common/icon';
 import {
   ListTitleIconColorsOptions,
@@ -13,62 +13,108 @@ import {
 } from '../../utils/enums/listTitleIconColors';
 import {useTheme} from '@react-navigation/native';
 import theme from '../../theme';
+import {onAddList, onUpdateList} from '../../redux/listSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import {onAddListType} from '../../redux/types';
+import {RootState} from '../../redux/store';
+import {clearSelectedList} from '../../redux/selectedItemSlice';
 
-type Props = Pick<CustomBottomSheetProps, 'sheetRef'>;
+type Props = Pick<CustomBottomSheetProps, 'sheetRef' | 'onClose'>;
 
 const NewListBottomSheet = (props: Props) => {
-  const {sheetRef} = props;
+  const {sheetRef, onClose} = props;
   const [input, setInput] = useState('');
   const [selectedColor, setSelectedColor] =
     useState<ListTitleIconColorsOptions>(ListTitleIconColorsOptions.Red);
   const {t} = useTranslation();
   const {colors} = useTheme();
 
+  const dispatch = useDispatch();
+  const selectedList = useSelector(
+    (state: RootState) => state.selections.selectedList,
+  );
+
+  useEffect(() => {
+    if (selectedList) {
+      setInput(selectedList.title);
+      setSelectedColor(selectedList.icon);
+    } else {
+      setInput('');
+      setSelectedColor(ListTitleIconColorsOptions.Red);
+    }
+  }, [selectedList]);
+
+  const onAddPress = () => {
+    const newList: onAddListType = {
+      icon: selectedColor,
+      title: input,
+    };
+    if (selectedList) {
+      dispatch(
+        onUpdateList({
+          icon: selectedColor,
+          id: selectedList.id,
+          title: input,
+        }),
+      );
+    } else {
+      dispatch(onAddList(newList));
+    }
+    closeBottomSheet();
+  };
+
   const renderContent = () => {
     return (
-      <>
-        <View style={styles.contentContainer}>
-          <View
-            style={[
-              styles.topContainer,
-              {backgroundColor: colors.lightGrayBG},
-            ]}>
-            <Icon
-              icon="List"
-              width={124}
-              height={124}
-              color={ListTitleIconColorsCodes[selectedColor]}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder={t('common.title')}
-              value={input}
-              onChangeText={setInput}
-              autoFocus
-            />
-          </View>
-          <TitleIconColorSelection
-            containerStyle={styles.colorSelection}
-            selectedColor={selectedColor}
-            onSelect={setSelectedColor}
+      <View style={styles.contentContainer}>
+        <View
+          style={[styles.topContainer, {backgroundColor: colors.lightGrayBG}]}>
+          <Icon
+            icon="List"
+            width={124}
+            height={124}
+            color={ListTitleIconColorsCodes[selectedColor]}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder={t('common.title')}
+            value={input}
+            onChangeText={setInput}
+            autoFocus
           />
         </View>
-      </>
+        <TitleIconColorSelection
+          containerStyle={styles.colorSelection}
+          selectedColor={selectedColor}
+          onSelect={setSelectedColor}
+        />
+      </View>
     );
   };
 
   const closeBottomSheet = () => {
     sheetRef?.current.close();
     setInput('');
+    setSelectedColor(ListTitleIconColorsOptions.Red);
+    dispatch(clearSelectedList());
+    onClose && onClose();
+  };
+
+  const onCloseSheet = () => {
+    setInput('');
+    dispatch(clearSelectedList());
+    onClose && onClose();
   };
 
   return (
     <CustomBottomSheet
-      onClose={() => setInput('')}
+      onClose={onCloseSheet}
       renderHeader={() => (
         <NewItemBottomSheetHeader
-          onAddPress={() => console.log('')}
-          title={t('common.new-list')}
+          onAddPress={onAddPress}
+          isUpdate={selectedList ? true : false}
+          title={
+            selectedList ? t('common.new-list-update') : t('common.new-list')
+          }
           isAddDisabled={!input}
           onCancelPress={closeBottomSheet}
         />
