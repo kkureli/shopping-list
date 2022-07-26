@@ -1,5 +1,5 @@
 import {Alert} from 'react-native';
-import React, {useRef} from 'react';
+import React, {useMemo, useRef, useState} from 'react';
 import {RootState} from '../../redux/store';
 import {onDeleteList} from '../../redux/listSlice';
 import {useDispatch, useSelector} from 'react-redux';
@@ -21,6 +21,7 @@ import {
 } from '../../redux/selectedItemSlice';
 import Footer from '../../components/common/footer';
 import NewItemBottomSheet from '../newItem/newItem';
+import SearchInput from '../../components/common/searchInput';
 
 const Home = () => {
   const {t} = useTranslation();
@@ -31,6 +32,26 @@ const Home = () => {
   const refRBSheetList = useRef<RBSheetType>();
   const refRBSheetItem = useRef<RBSheetType>();
   const swipeListViewRef = useRef<any>();
+
+  const [searchInput, setSearchInput] = useState('');
+  const [debounceResult, setDebounceResult] = useState('');
+
+  const handleChangeDebounce = (value: string) => {
+    setDebounceResult(value);
+  };
+
+  const searchResultsLists: List[] = useMemo(() => {
+    if (searchInput) {
+      return lists.filter(list =>
+        list.title
+          .toLocaleLowerCase()
+          .includes(searchInput.toLocaleLowerCase()),
+      );
+    } else {
+      return lists;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debounceResult, lists]);
 
   const onNewListPress = () => {
     swipeListViewRef?.current?.closeAllOpenRows();
@@ -85,17 +106,23 @@ const Home = () => {
 
   return (
     <>
-      {lists.length === 0 ? (
-        <Empty message={t('common.no-list-message')} />
-      ) : (
-        <SwipableListView
-          swipeListViewRef={swipeListViewRef}
-          renderFrontItem={renderItem}
-          lists={lists}
-          handleDelete={handleDelete}
-          handleInfo={handleInfo}
-        />
-      )}
+      <SearchInput
+        onChangeText={setSearchInput}
+        value={searchInput}
+        handleChangeDebounce={handleChangeDebounce}
+      />
+      <SwipableListView
+        // ListHeaderComponent={() => }
+        ListEmptyComponent={() => (
+          <Empty message={t('common.no-list-message')} />
+        )}
+        swipeListViewRef={swipeListViewRef}
+        renderFrontItem={renderItem}
+        lists={searchResultsLists}
+        handleDelete={handleDelete}
+        handleInfo={handleInfo}
+      />
+
       <NewItemBottomSheet sheetRef={refRBSheetItem} />
       <NewListBottomSheet sheetRef={refRBSheetList} />
       <Footer
