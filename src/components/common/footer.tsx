@@ -48,8 +48,7 @@ export default Footer;
 const styles = StyleSheet.create({
   footer: {
     borderTopWidth: 1,
-    position: 'absolute',
-    bottom: 0,
+    height: 70,
     width: '100%',
   },
   container: {
