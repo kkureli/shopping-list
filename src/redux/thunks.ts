@@ -54,20 +54,27 @@ export const addListThunk = createAsyncThunk<List, onAddListType, {}>(
       updatedDate: getCurrentDate(),
       items: [],
     };
-    await services.addList({
-      [id]: newList,
-    });
-    dispatch(setLoading(false));
-    return newList;
+    try {
+      await services.addList({
+        [id]: newList,
+      });
+
+      return newList;
+    } finally {
+      dispatch(setLoading(false));
+    }
   },
 );
 export const deleteListThunk = createAsyncThunk<string, onDeleteListType, {}>(
   'deleteList',
   async (payload: Pick<List, 'id'>, {dispatch}) => {
     dispatch(setLoading(true));
-    await services.deleteList(payload.id);
-    dispatch(setLoading(false));
-    return payload.id;
+    try {
+      await services.deleteList(payload.id);
+      return payload.id;
+    } finally {
+      dispatch(setLoading(false));
+    }
   },
 );
 
@@ -86,13 +93,17 @@ export const updateListThunk = createAsyncThunk<
     icon: list.icon,
     title: list.title,
   };
-  await services.updateList(list.id, updatedList);
-  dispatch(setLoading(false));
 
-  return {
-    updatedList,
-    id: list.id,
-  };
+  try {
+    await services.updateList(list.id, updatedList);
+
+    return {
+      updatedList,
+      id: list.id,
+    };
+  } finally {
+    dispatch(setLoading(false));
+  }
 });
 
 export const addItemThunk = createAsyncThunk<
@@ -115,10 +126,13 @@ export const addItemThunk = createAsyncThunk<
     selectedList.items?.length > 0 ? [...selectedList.items] : [];
   updatedListItems.unshift(addedItem);
 
-  await services.addItem(updatedListItems, payload.list.id);
-  dispatch(setLoading(false));
+  try {
+    await services.addItem(updatedListItems, payload.list.id);
 
-  return {updatedListItems, listId: payload.list.id};
+    return {updatedListItems, listId: payload.list.id};
+  } finally {
+    dispatch(setLoading(false));
+  }
 });
 
 export const updateItemThunk = createAsyncThunk<
@@ -146,11 +160,12 @@ export const updateItemThunk = createAsyncThunk<
       updatedItem,
       ...selectedList?.items.filter(item => item.id !== payload.item.id),
     ];
-
-    await services.addItem(updatedListItems, payload.list.id);
-    dispatch(setLoading(false));
-
-    return {updatedListItems, listId: payload.list.id};
+    try {
+      await services.addItem(updatedListItems, payload.list.id);
+      return {updatedListItems, listId: payload.list.id};
+    } finally {
+      dispatch(setLoading(false));
+    }
   },
 );
 
@@ -170,11 +185,12 @@ export const deleteItemThunk = createAsyncThunk<
     const updatedListItems = selectedList?.items.filter(
       item => item.id !== payload.item.id,
     );
-
-    await services.addItem(updatedListItems, payload.list.id);
-    dispatch(setLoading(false));
-
-    return {updatedListItems, listId: payload.list.id};
+    try {
+      await services.addItem(updatedListItems, payload.list.id);
+      return {updatedListItems, listId: payload.list.id};
+    } finally {
+      dispatch(setLoading(false));
+    }
   },
 );
 
@@ -205,11 +221,12 @@ export const changeItemStatusThunk = createAsyncThunk<
         selectedList.items,
         payload.item.id,
       );
-
-      await services.changeItemStatusThunk(updatedListItems, payload.list.id);
-      dispatch(setLoading(false));
-
-      return {updatedListItems, listId: payload.list.id};
+      try {
+        await services.changeItemStatusThunk(updatedListItems, payload.list.id);
+        return {updatedListItems, listId: payload.list.id};
+      } finally {
+        dispatch(setLoading(false));
+      }
     } else {
       const updatedItem: Item = {
         ...selectedItem,
@@ -227,9 +244,12 @@ export const changeItemStatusThunk = createAsyncThunk<
         list.id === payload.list.id ? {...list, items: updatedListItems} : list,
       );
 
-      await services.changeItemStatusThunk(updatedListItems, payload.list.id);
-      dispatch(setLoading(false));
-      return {updatedListItems, listId: payload.list.id};
+      try {
+        await services.changeItemStatusThunk(updatedListItems, payload.list.id);
+        return {updatedListItems, listId: payload.list.id};
+      } finally {
+        dispatch(setLoading(false));
+      }
     }
   },
 );
