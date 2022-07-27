@@ -39,3 +39,12 @@ export const addToEndOfListAndDelete = (
 ): any[] => {
   return [...list.filter(listItem => listItem.id !== id), itemToAdd];
 };
+
+export const toArray = (response: any) => {
+  const array: any[] = [];
+
+  Object.keys(response).forEach(key => {
+    array.push(response[key]);
+  });
+  return array;
+};

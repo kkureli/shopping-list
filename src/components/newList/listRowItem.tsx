@@ -33,7 +33,7 @@ const ListRowItem = (props: Props) => {
           </Typography>
         </View>
         <View style={styles.row}>
-          <Typography bold>{item.items.length}</Typography>
+          <Typography bold>{item.items?.length ?? 0}</Typography>
           <Icon icon="Right" color={colors.text} />
         </View>
       </View>

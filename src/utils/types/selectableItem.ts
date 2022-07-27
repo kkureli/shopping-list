@@ -10,4 +10,6 @@ export type SelectableItemProps = {
   selectedKey?: string;
   renderLeft?: () => JSX.Element;
   style?: ViewStyle;
+  labelStyle?: ViewStyle;
+  numberOfLines?: number;
 };

@@ -5,10 +5,9 @@ import Empty from '../../components/common/empty';
 import {useTranslation} from 'react-i18next';
 import {Item} from '../../models/item.model';
 import {useDispatch, useSelector} from 'react-redux';
-import {onDeleteItem, onItemStatusChange} from '../../redux/listSlice';
 import SwipableListView from '../../components/common/swipableListView';
 import ItemRow from '../../components/newItem/itemRow';
-import {RootState} from '../../redux/store';
+import {AppDispatch, RootState} from '../../redux/store';
 import NewItemBottomSheet from '../newItem/newItem';
 import Footer from '../../components/common/footer';
 import {RBSheetType} from '../../utils/types/bottomSheet';
@@ -16,11 +15,12 @@ import {
   clearSelectedItem,
   setSelectedItem,
 } from '../../redux/selectedItemSlice';
+import {changeItemStatusThunk, deleteItemThunk} from '../../redux/thunks';
 
 const ItemsList = (props: ItemsListProps) => {
   const {selectedList} = props;
   const {t} = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const itemsList = useSelector((state: RootState) => state.list.lists)?.find(
     list => list.id === selectedList.id,
   )?.items;
@@ -36,7 +36,7 @@ const ItemsList = (props: ItemsListProps) => {
         style: 'destructive',
         onPress: () =>
           dispatch(
-            onDeleteItem({
+            deleteItemThunk({
               item: {id: item.id},
               list: {id: selectedList.id},
             }),
@@ -58,7 +58,7 @@ const ItemsList = (props: ItemsListProps) => {
 
   const onCheckItem = (item: Item) => {
     dispatch(
-      onItemStatusChange({
+      changeItemStatusThunk({
         item: {
           id: item.id,
         },
