@@ -1,4 +1,3 @@
-import {StyleSheet} from 'react-native';
 import React, {ReactNode} from 'react';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
@@ -28,5 +27,3 @@ const Wrapper = (props: Props) => {
 };
 
 export default Wrapper;
-
-const styles = StyleSheet.create({});
