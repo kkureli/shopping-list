@@ -53,6 +53,9 @@ export const WEIGHTS = {
   medium: '400',
   light: '300',
 };
+export const COLORS = {
+  splashBG: 'rgb(29,54,174)',
+};
 
 export const FONTFAMILY = {
   fontFamily: 'Montserrat',
@@ -60,4 +63,4 @@ export const FONTFAMILY = {
 
 export const hitSlop = {top: 20, left: 20, bottom: 20, right: 20};
 
-export default {SIZES, FONTS, WEIGHTS, FONTFAMILY, SHADOW};
+export default {SIZES, FONTS, WEIGHTS, FONTFAMILY, SHADOW, COLORS};

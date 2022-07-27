@@ -2,12 +2,14 @@ import {configureStore} from '@reduxjs/toolkit';
 import themeReducer from './themeSlice';
 import listReducer from './listSlice';
 import selectionReducer from './selectedItemSlice';
+import appReducer from './appSlice';
 
 export const store = configureStore({
   reducer: {
     theme: themeReducer,
     list: listReducer,
     selections: selectionReducer,
+    appState: appReducer,
   },
 });
 

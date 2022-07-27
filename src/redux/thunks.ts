@@ -20,6 +20,7 @@ import {
   onUpdateListType,
 } from './types';
 import {Item, ItemStatus} from '../models/item.model';
+import {setIsSplasLoading, setLoading} from './appSlice';
 
 export type UpdatedListItemsReturnType = {
   updatedListItems: Item[];
@@ -32,14 +33,19 @@ export type UpdatedListReturnType = {
 
 export const getListsThunk = createAsyncThunk<List[], undefined, {}>(
   'getLists',
-  async () => {
+  async (undefined, {dispatch}) => {
     const data = await services.getLists();
+    setTimeout(() => {
+      dispatch(setIsSplasLoading(false));
+    }, 2222);
     return toArray(data);
   },
 );
 export const addListThunk = createAsyncThunk<List, onAddListType, {}>(
   'addList',
-  async (list: onAddListType) => {
+  async (list: onAddListType, {dispatch}) => {
+    dispatch(setLoading(true));
+
     const id = uuid.v4().toString();
     const newList: List = {
       ...list,
@@ -51,13 +57,16 @@ export const addListThunk = createAsyncThunk<List, onAddListType, {}>(
     await services.addList({
       [id]: newList,
     });
+    dispatch(setLoading(false));
     return newList;
   },
 );
 export const deleteListThunk = createAsyncThunk<string, onDeleteListType, {}>(
   'deleteList',
-  async (payload: Pick<List, 'id'>) => {
+  async (payload: Pick<List, 'id'>, {dispatch}) => {
+    dispatch(setLoading(true));
     await services.deleteList(payload.id);
+    dispatch(setLoading(false));
     return payload.id;
   },
 );
@@ -66,7 +75,8 @@ export const updateListThunk = createAsyncThunk<
   UpdatedListReturnType,
   onUpdateListType,
   {}
->('updateList', async (list, {getState}) => {
+>('updateList', async (list, {getState, dispatch}) => {
+  dispatch(setLoading(true));
   const state = getState().list;
 
   const selectedList = getSelectedList(state.lists, list.id);
@@ -77,6 +87,7 @@ export const updateListThunk = createAsyncThunk<
     title: list.title,
   };
   await services.updateList(list.id, updatedList);
+  dispatch(setLoading(false));
 
   return {
     updatedList,
@@ -88,7 +99,8 @@ export const addItemThunk = createAsyncThunk<
   UpdatedListItemsReturnType,
   onAddItemPayloadType,
   {}
->('addItem', async (payload: onAddItemPayloadType, {getState}) => {
+>('addItem', async (payload: onAddItemPayloadType, {getState, dispatch}) => {
+  dispatch(setLoading(true));
   const state = getState().list;
 
   const addedItem: Item = {
@@ -104,6 +116,8 @@ export const addItemThunk = createAsyncThunk<
   updatedListItems.unshift(addedItem);
 
   await services.addItem(updatedListItems, payload.list.id);
+  dispatch(setLoading(false));
+
   return {updatedListItems, listId: payload.list.id};
 });
 
@@ -111,44 +125,58 @@ export const updateItemThunk = createAsyncThunk<
   UpdatedListItemsReturnType,
   onUpdateItemPayloadType,
   {}
->('updateItem', async (payload: onUpdateItemPayloadType, {getState}) => {
-  const state = getState().list;
+>(
+  'updateItem',
+  async (payload: onUpdateItemPayloadType, {getState, dispatch}) => {
+    dispatch(setLoading(true));
 
-  const selectedList = getSelectedList(state.lists, payload.list.id);
+    const state = getState().list;
 
-  const selectedItem = getSelectedItem(selectedList?.items, payload.item.id);
+    const selectedList = getSelectedList(state.lists, payload.list.id);
 
-  const updatedItem: Item = {
-    ...selectedItem,
-    title: payload.item.title,
-    updatedDate: getCurrentDate(),
-  };
+    const selectedItem = getSelectedItem(selectedList?.items, payload.item.id);
 
-  const updatedListItems = [
-    updatedItem,
-    ...selectedList?.items.filter(item => item.id !== payload.item.id),
-  ];
+    const updatedItem: Item = {
+      ...selectedItem,
+      title: payload.item.title,
+      updatedDate: getCurrentDate(),
+    };
 
-  await services.addItem(updatedListItems, payload.list.id);
-  return {updatedListItems, listId: payload.list.id};
-});
+    const updatedListItems = [
+      updatedItem,
+      ...selectedList?.items.filter(item => item.id !== payload.item.id),
+    ];
+
+    await services.addItem(updatedListItems, payload.list.id);
+    dispatch(setLoading(false));
+
+    return {updatedListItems, listId: payload.list.id};
+  },
+);
 
 export const deleteItemThunk = createAsyncThunk<
   UpdatedListItemsReturnType,
   onDeleteItemPayloadType,
   {}
->('deleteItem', async (payload: onDeleteItemPayloadType, {getState}) => {
-  const state = getState().list;
+>(
+  'deleteItem',
+  async (payload: onDeleteItemPayloadType, {getState, dispatch}) => {
+    dispatch(setLoading(true));
 
-  const selectedList = getSelectedList(state.lists, payload.list.id);
+    const state = getState().list;
 
-  const updatedListItems = selectedList?.items.filter(
-    item => item.id !== payload.item.id,
-  );
+    const selectedList = getSelectedList(state.lists, payload.list.id);
 
-  await services.addItem(updatedListItems, payload.list.id);
-  return {updatedListItems, listId: payload.list.id};
-});
+    const updatedListItems = selectedList?.items.filter(
+      item => item.id !== payload.item.id,
+    );
+
+    await services.addItem(updatedListItems, payload.list.id);
+    dispatch(setLoading(false));
+
+    return {updatedListItems, listId: payload.list.id};
+  },
+);
 
 export const changeItemStatusThunk = createAsyncThunk<
   UpdatedListItemsReturnType,
@@ -156,7 +184,9 @@ export const changeItemStatusThunk = createAsyncThunk<
   {}
 >(
   'changeItemStatus',
-  async (payload: onItemStatusChangePayloadType, {getState}) => {
+  async (payload: onItemStatusChangePayloadType, {getState, dispatch}) => {
+    dispatch(setLoading(true));
+
     const state = getState().list;
 
     const selectedList = getSelectedList(state.lists, payload.list.id);
@@ -177,6 +207,8 @@ export const changeItemStatusThunk = createAsyncThunk<
       );
 
       await services.changeItemStatusThunk(updatedListItems, payload.list.id);
+      dispatch(setLoading(false));
+
       return {updatedListItems, listId: payload.list.id};
     } else {
       const updatedItem: Item = {
@@ -196,6 +228,7 @@ export const changeItemStatusThunk = createAsyncThunk<
       );
 
       await services.changeItemStatusThunk(updatedListItems, payload.list.id);
+      dispatch(setLoading(false));
       return {updatedListItems, listId: payload.list.id};
     }
   },

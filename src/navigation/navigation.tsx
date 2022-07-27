@@ -7,9 +7,17 @@ import {LightTheme, DarkTheme} from '../theme';
 import {RootState} from '../redux/store';
 import {ThemeMode} from '../utils/enums/theme';
 import {navigationRef} from './rootNavigation';
+import SplashScreen from '../screens/splash/splashScreen';
 
 const AppNavigation: FC = () => {
   const theme = useSelector((state: RootState) => state.theme);
+  const isSplashLoading = useSelector(
+    (state: RootState) => state.appState.isSplashLoading,
+  );
+
+  if (isSplashLoading) {
+    return <SplashScreen />;
+  }
 
   return (
     <NavigationContainer

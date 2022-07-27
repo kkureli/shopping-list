@@ -41,7 +41,7 @@ AxiosInstance.interceptors.response.use(
     if (__DEV__) {
       console.log('>>>RESPONSE ERROR', {error});
     }
-
+    Alert.alert('Something went wrong');
     return Promise.reject(error);
   },
 );
