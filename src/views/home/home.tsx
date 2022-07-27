@@ -21,7 +21,7 @@ import {
 import Footer from '../../components/common/footer';
 import NewItemBottomSheet from '../newItem/newItem';
 import SearchInput from '../../components/common/searchInput';
-import {deleteListThunk, getListsThunk} from '../../redux/thunks';
+import {deleteListThunk} from '../../redux/thunks';
 
 const Home = () => {
   const {t} = useTranslation();
@@ -39,12 +39,6 @@ const Home = () => {
   const handleChangeDebounce = (value: string) => {
     setDebounceResult(value);
   };
-
-  React.useEffect(() => {
-    //TODO: splash'e ekle
-    dispatch(getListsThunk());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const searchResultsLists: List[] = useMemo(() => {
     if (searchInput) {

@@ -1420,7 +1420,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/hoist-non-react-statics@^3.3.0", "@types/hoist-non-react-statics@^3.3.1":
+"@types/hoist-non-react-statics@^3.3.1":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
   integrity sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==
@@ -1491,16 +1491,6 @@
   integrity sha512-htIxgvwUlYMFKogynsoMeZgxHq9WVEMJGl1UoVdRFctYCR/gSjapN+vKjxX+eo5qh/WSOYdzC/hOEz0cgLkTtQ==
   dependencies:
     "@types/react" "*"
-
-"@types/react-redux@^7.1.24":
-  version "7.1.24"
-  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-7.1.24.tgz#6caaff1603aba17b27d20f8ad073e4c077e975c0"
-  integrity sha512-7FkurKcS1k0FHZEtdbbgN8Oc6b+stGSfZYjQGicofJ0j4U0qIn/jaSvnP2pLwZKiai3/17xqqxkkrxTgN8UNbQ==
-  dependencies:
-    "@types/hoist-non-react-statics" "^3.3.0"
-    "@types/react" "*"
-    hoist-non-react-statics "^3.3.0"
-    redux "^4.0.0"
 
 "@types/react-test-renderer@^18.0.0":
   version "18.0.0"
@@ -5796,7 +5786,7 @@ prompts@^2.0.1, prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@*, prop-types@^15.8.1:
+prop-types@*, prop-types@^15.5.8, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -5919,6 +5909,13 @@ react-native-screens@^3.15.0:
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
+
+react-native-spinkit@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-spinkit/-/react-native-spinkit-1.5.1.tgz#5b770ce93e1f892b3d1983fd3ce2d7375335eb6b"
+  integrity sha512-XkTgP4e+/MZpbI1GdZTIEQ+6WeMWQT4duWnSiXaaVW7py0rtaBLswtAEA6uXQGUhnxMnPWZhbLz7QponpH3ciQ==
+  dependencies:
+    prop-types "^15.5.8"
 
 react-native-svg@^12.4.0:
   version "12.4.0"
@@ -6079,7 +6076,7 @@ redux-thunk@^2.4.1:
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.1.tgz#0dd8042cf47868f4b29699941de03c9301a75714"
   integrity sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q==
 
-redux@^4.0.0, redux@^4.1.2:
+redux@^4.1.2:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.2.0.tgz#46f10d6e29b6666df758780437651eeb2b969f13"
   integrity sha512-oSBmcKKIuIR4ME29/AeNUnl5L+hvBq7OaJWzaptTQJAntaPvxIJqfnjbaEiCzzaIz+XmVILfqAM3Ob0aXLPfjA==
