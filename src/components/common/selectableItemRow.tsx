@@ -5,8 +5,18 @@ import Icon from './icon';
 import Typography from './typography';
 
 const SelectableItemRow = (props: SelectableItemProps) => {
-  const {icon, value, label, onSelect, img, selectedKey, renderLeft, style} =
-    props;
+  const {
+    icon,
+    value,
+    label,
+    onSelect,
+    img,
+    selectedKey,
+    renderLeft,
+    style,
+    labelStyle,
+    numberOfLines,
+  } = props;
 
   return (
     <TouchableOpacity
@@ -17,7 +27,13 @@ const SelectableItemRow = (props: SelectableItemProps) => {
         {icon && <Icon icon={icon} />}
         {img && <Image source={img} style={styles.img} />}
       </View>
-      <View>{label && <Typography bold>{label}</Typography>}</View>
+      <View>
+        {label && (
+          <Typography numberOfLines={numberOfLines} style={labelStyle} bold>
+            {label}
+          </Typography>
+        )}
+      </View>
       {selectedKey && selectedKey === value && <Icon icon="Check" />}
     </TouchableOpacity>
   );

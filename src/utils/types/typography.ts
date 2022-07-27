@@ -36,5 +36,6 @@ export type TypographyProps = {
   success?: boolean;
   info?: boolean;
   style?: any;
+  numberOfLines?: number;
   children: ReactNode;
 };

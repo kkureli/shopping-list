@@ -13,13 +13,13 @@ import {
 } from '../../utils/enums/listTitleIconColors';
 import {useTheme} from '@react-navigation/native';
 import theme from '../../theme';
-import {onAddList, onUpdateList} from '../../redux/listSlice';
 import {useDispatch, useSelector} from 'react-redux';
 import {onAddListType} from '../../redux/types';
-import {RootState} from '../../redux/store';
+import {AppDispatch, RootState} from '../../redux/store';
 import {clearSelectedList} from '../../redux/selectedItemSlice';
 import Dropdown, {SelectItemType} from '../../components/common/dropdown';
 import {List} from '../../models/list.model';
+import {addListThunk, updateListThunk} from '../../redux/thunks';
 
 type Props = Pick<CustomBottomSheetProps, 'sheetRef' | 'onClose'>;
 
@@ -30,8 +30,8 @@ const NewListBottomSheet = (props: Props) => {
     useState<ListTitleIconColorsOptions>(ListTitleIconColorsOptions.Red);
   const {t} = useTranslation();
   const {colors} = useTheme();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const dispatch = useDispatch();
   const selectedList = useSelector(
     (state: RootState) => state.selections.selectedList,
   );
@@ -79,20 +79,20 @@ const NewListBottomSheet = (props: Props) => {
   }, [selectedList]);
 
   const onAddPress = () => {
-    const newList: onAddListType = {
-      icon: selectedColor,
-      title: input,
-    };
     if (selectedList) {
       dispatch(
-        onUpdateList({
+        updateListThunk({
           icon: selectedColor,
           id: selectedList.id,
           title: input,
         }),
       );
     } else {
-      dispatch(onAddList(newList));
+      const newList: onAddListType = {
+        icon: selectedColor,
+        title: input,
+      };
+      dispatch(addListThunk(newList));
     }
     closeBottomSheet();
   };

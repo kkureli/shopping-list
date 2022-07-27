@@ -1,7 +1,6 @@
 import {Alert} from 'react-native';
 import React, {useMemo, useRef, useState} from 'react';
-import {RootState} from '../../redux/store';
-import {onDeleteList} from '../../redux/listSlice';
+import {AppDispatch, RootState} from '../../redux/store';
 import {useDispatch, useSelector} from 'react-redux';
 import {List} from '../../models/list.model';
 import Empty from '../../components/common/empty';
@@ -22,11 +21,12 @@ import {
 import Footer from '../../components/common/footer';
 import NewItemBottomSheet from '../newItem/newItem';
 import SearchInput from '../../components/common/searchInput';
+import {deleteListThunk, getListsThunk} from '../../redux/thunks';
 
 const Home = () => {
   const {t} = useTranslation();
   const lists = useSelector((state: RootState) => state.list.lists);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
   const refRBSheetList = useRef<RBSheetType>();
@@ -39,6 +39,12 @@ const Home = () => {
   const handleChangeDebounce = (value: string) => {
     setDebounceResult(value);
   };
+
+  React.useEffect(() => {
+    //TODO: splash'e ekle
+    dispatch(getListsThunk());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const searchResultsLists: List[] = useMemo(() => {
     if (searchInput) {
@@ -74,7 +80,7 @@ const Home = () => {
         style: 'destructive',
         onPress: () =>
           dispatch(
-            onDeleteList({
+            deleteListThunk({
               id: item.id,
             }),
           ),

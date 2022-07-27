@@ -29,13 +29,15 @@ const ListSelection = (props: Props) => {
   const renderItem = ({item}: {item: List}) => {
     return (
       <SelectableItemRow
+        numberOfLines={1}
+        labelStyle={styles.label}
         style={styles.selectableItem}
         label={item.title}
         selectedKey={selectedList.id}
         value={item.id}
         renderLeft={() => {
           return (
-            <Icon icon="List" color={ListTitleIconColorsCodes[item.icon]} />
+            <Icon icon="List" color={ListTitleIconColorsCodes[item?.icon]} />
           );
         }}
         onSelect={() => {
@@ -113,4 +115,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   selectableItem: {marginVertical: 10},
+  label: {
+    maxWidth: 80,
+  },
 });

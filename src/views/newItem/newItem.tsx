@@ -6,14 +6,14 @@ import TextInput from '../../components/common/textInput';
 import {useTranslation} from 'react-i18next';
 import {CustomBottomSheetProps} from '../../utils/types/custombottomSheet';
 import {onAddItemPayloadType} from '../../redux/types';
-import {onAddItem, onUpdateItem} from '../../redux/listSlice';
 import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../redux/store';
+import {AppDispatch, RootState} from '../../redux/store';
 import {clearSelectedItem} from '../../redux/selectedItemSlice';
 import {List} from '../../models/list.model';
 import ListSelection from '../../components/newItem/listSelection';
 import Dropdown, {SelectItemType} from '../../components/common/dropdown';
 import {Item} from '../../models/item.model';
+import {addItemThunk, updateItemThunk} from '../../redux/thunks';
 
 type Props = Pick<CustomBottomSheetProps, 'sheetRef'>;
 
@@ -21,7 +21,7 @@ const NewItemBottomSheet = (props: Props) => {
   const {sheetRef} = props;
   const [input, setInput] = useState('');
   const {t} = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const selectedItem = useSelector(
     (state: RootState) => state.selections.selectedItem,
@@ -43,7 +43,7 @@ const NewItemBottomSheet = (props: Props) => {
     if (input) {
       const items: Item[] = [];
       lists.filter(listItem => {
-        if (listItem.items.length > 0) {
+        if (listItem.items?.length > 0) {
           listItem.items.map(e => items.push(e));
         }
       });
@@ -106,7 +106,7 @@ const NewItemBottomSheet = (props: Props) => {
   const onAddPress = () => {
     if (selectedItem) {
       dispatch(
-        onUpdateItem({
+        updateItemThunk({
           item: {
             id: selectedItem?.id,
             title: input,
@@ -125,7 +125,7 @@ const NewItemBottomSheet = (props: Props) => {
           id: list?.id,
         },
       };
-      dispatch(onAddItem(newItem));
+      dispatch(addItemThunk(newItem));
     }
 
     closeBottomSheet();
