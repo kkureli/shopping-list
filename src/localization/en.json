@@ -1,0 +1,21 @@
+{
+  "common.add": "Add",
+  "common.cancel": "Cancel",
+  "common.delete": "Delete",
+  "common.delete-item-message": "The item will be deleted. Are you sure?",
+  "common.delete-list-message": "The list will be deleted. Are you sure?",
+  "common.new-item": "New Item",
+  "common.new-list": "New List",
+  "common.new-list-update": "Update List",
+  "common.no-item-message": "You do not have any item",
+  "common.no-list-message": "You do not have any list",
+  "common.title": "Title",
+  "common.update": "Update",
+  "common.update-item": "Update Item",
+  "common.warning": "Warning",
+  "components.footer.new-item": "New Item",
+  "components.footer.new-list": "New List",
+  "hello": "Hello",
+  "screens.home.header.title": "My Lists",
+  "screens.items-list.header.title": "Items"
+}

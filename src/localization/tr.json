@@ -1,0 +1,21 @@
+{
+  "common.add": "Ekle",
+  "common.cancel": "İptal",
+  "common.delete": "Sil",
+  "common.delete-item-message": "Öğe silinecektir. Emin misiniz?",
+  "common.delete-list-message": "Liste silinecektir. Emin misiniz?",
+  "common.new-item": "Yeni Öğe",
+  "common.new-list": "Yeni Liste",
+  "common.new-list-update": "Listeyi Güncelle",
+  "common.no-item-message": "Öğe bulunmuyor",
+  "common.no-list-message": "Listeniz bulunmuyor",
+  "common.title": "Başlık",
+  "common.update": "Güncelle",
+  "common.update-item": "Ögeyi Güncelle",
+  "common.warning": "Uyarı",
+  "components.footer.new-item": "Yeni Öğe",
+  "components.footer.new-list": "Yeni Liste",
+  "hello": "Merhaba",
+  "screens.home.header.title": "Listelerim",
+  "screens.items-list.header.title": "Öğeler"
+}

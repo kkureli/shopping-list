@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dropdown component renders dropdown correctly 1`] = `
+<RCTScrollView
+  ItemSeparatorComponent={[Function]}
+  contentContainerStyle={
+    Array [
+      Object {
+        "backgroundColor": "rgb(242, 242, 242)",
+      },
+      Object {
+        "backgroundColor": "rgb(242, 242, 242)",
+        "borderColor": "silver",
+        "borderRadius": 5,
+        "borderWidth": 1,
+        "marginTop": 5,
+        "width": "100%",
+      },
+    ]
+  }
+  getItem={[Function]}
+  getItemCount={[Function]}
+  keyExtractor={[Function]}
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  style={
+    Object {
+      "maxHeight": 160,
+      "width": "90%",
+    }
+  }
+  viewabilityConfigCallbackPairs={Array []}
+>
+  <View />
+</RCTScrollView>
+`;
