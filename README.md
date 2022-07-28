@@ -60,7 +60,7 @@ To run the tests, execute `yarn test` in a terminal opened in the project folder
 For example:
 
 ```
-AIP-000 fix: style file updated.
+AIP-000 style: style file updated.
 ```
 
 | type     | release |
