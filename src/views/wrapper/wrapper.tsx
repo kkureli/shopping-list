@@ -16,8 +16,6 @@ const Wrapper = (props: Props) => {
 
   const isLoading = isSplashLoading || loading;
 
-  console.log({isSplashLoading});
-
   return (
     <>
       {children}

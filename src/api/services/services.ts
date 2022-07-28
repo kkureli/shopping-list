@@ -6,8 +6,8 @@ export const services = {
     return HttpClient.Get('/lists.json');
   },
   addList: (list: Record<string, List>) => {
-    //I use PUT instead of POST since I want to define the unique key for the list.
-    return HttpClient.Put('/lists.json', list);
+    //I use Patch instead of POST since I want to define the unique key for the list.
+    return HttpClient.Patch('/lists.json', list);
   },
   deleteList: (id: string) => {
     return HttpClient.Delete(`/lists/${id}.json`);
