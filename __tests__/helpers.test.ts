@@ -1,12 +1,12 @@
-import {ItemStatus} from '../../src/models/item.model';
+import {ItemStatus} from '../src/models/item.model';
 import {
   addToBeginningOfListAndDelete,
   addToEndOfListAndDelete,
   getSelectedItem,
   getSelectedList,
   toArray,
-} from '../../src/utils/helpers/helpers';
-import {ListTitleIconColorsOptions} from '../../src/utils/enums/listTitleIconColors';
+} from '../src/utils/helpers/helpers';
+import {ListTitleIconColorsOptions} from '../src/utils/enums/listTitleIconColors';
 
 const lists = [
   {

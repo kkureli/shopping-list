@@ -51,6 +51,7 @@ exports[`footer component renders footer correctly 1`] = `
       <RNSVGSvgView
         bbHeight={24}
         bbWidth={24}
+        color={4278221567}
         fill="none"
         focusable={false}
         height={24}
@@ -71,6 +72,7 @@ exports[`footer component renders footer correctly 1`] = `
             },
           ]
         }
+        tintColor={4278221567}
         width={24}
       >
         <RNSVGGroup
