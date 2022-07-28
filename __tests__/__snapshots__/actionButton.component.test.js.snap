@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionButton component renders ActionButton correctly 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "opacity": 1,
+    }
+  }
+>
+  <Text
+    margin={null}
+    padding={null}
+    style={
+      Object {
+        "color": "rgb(0, 122, 255)",
+        "fontFamily": "Montserrat",
+        "fontSize": 16,
+        "fontWeight": "bold",
+      }
+    }
+    tertiary={false}
+    theme={Object {}}
+  />
+</View>
+`;

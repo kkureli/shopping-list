@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`footer component renders footer correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "rgb(242, 242, 242)",
+        "borderTopColor": "rgb(216, 216, 216)",
+      },
+      Object {
+        "borderTopWidth": 1,
+        "height": 70,
+        "width": "100%",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingHorizontal": 10,
+        "paddingTop": 10,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "opacity": 1,
+        }
+      }
+      testID="AddNewItem"
+    >
+      <RNSVGSvgView
+        bbHeight={24}
+        bbWidth={24}
+        fill="none"
+        focusable={false}
+        height={24}
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            Object {
+              "flex": 0,
+              "height": 24,
+              "width": 24,
+            },
+          ]
+        }
+        width={24}
+      >
+        <RNSVGGroup
+          fill={null}
+          propList={
+            Array [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            Array [
+              2,
+            ]
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth={2}
+        >
+          <RNSVGCircle
+            cx={12}
+            cy={12}
+            r={10}
+          />
+          <RNSVGPath
+            d="M12 8v8M8 12h8"
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+      <Text
+        margin={null}
+        padding={null}
+        style={
+          Object {
+            "color": "rgb(0, 122, 255)",
+            "fontFamily": "Montserrat",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "marginLeft": 5,
+          }
+        }
+        tertiary={false}
+        theme={Object {}}
+      >
+        components.footer.new-item
+      </Text>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
