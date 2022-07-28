@@ -124,6 +124,7 @@ const NewListBottomSheet = (props: Props) => {
             color={ListTitleIconColorsCodes[selectedColor]}
           />
           <TextInput
+            testID="NewListInput"
             handleChangeDebounce={handleChangeDebounce}
             style={styles.input}
             placeholder={t('common.title')}

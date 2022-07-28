@@ -5,9 +5,10 @@ import {ActionButtonProps} from '../../utils/types/actionButton';
 import Icon from './icon';
 
 const ActionButton = (props: ActionButtonProps) => {
-  const {text, onPress, icon, disabled} = props;
+  const {text, onPress, icon, disabled, testID} = props;
   return (
     <TouchableOpacity
+      testID={testID}
       disabled={disabled}
       style={styles.container}
       onPress={onPress}>

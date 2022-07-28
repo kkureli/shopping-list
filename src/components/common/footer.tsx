@@ -27,6 +27,7 @@ const Footer = (props: FooterProps) => {
       <View style={styles.container}>
         {canAddNewItem && (
           <ActionButton
+            testID="AddNewItem"
             icon="Plus"
             onPress={onNewItemPress}
             text={t('components.footer.new-item')}
@@ -34,6 +35,7 @@ const Footer = (props: FooterProps) => {
         )}
         {canAddList && onNewListPress && (
           <ActionButton
+            testID="AddNewList"
             onPress={onNewListPress}
             text={t('components.footer.new-list')}
           />

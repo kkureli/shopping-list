@@ -18,11 +18,16 @@ const NewItemBottomSheetHeader = (props: Props) => {
   const {isAddDisabled, onAddPress, onCancelPress, title, isUpdate} = props;
   return (
     <View style={styles.headerRow}>
-      <ActionButton text={t('common.cancel')} onPress={onCancelPress} />
+      <ActionButton
+        testID="Cancel"
+        text={t('common.cancel')}
+        onPress={onCancelPress}
+      />
       <Typography center bold>
         {title}
       </Typography>
       <ActionButton
+        testID="AddUpdate"
         disabled={isAddDisabled}
         text={isUpdate ? t('common.update') : t('common.add')}
         onPress={onAddPress}

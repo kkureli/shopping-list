@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`itemRow component renders itemRow correctly 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "padding": 18,
+      },
+      Object {
+        "backgroundColor": "rgb(242, 242, 242)",
+        "borderBottomColor": "rgb(28, 28, 30)",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "marginRight": 30,
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 50,
+              "height": 35,
+              "width": 35,
+            },
+            Object {
+              "backgroundColor": undefined,
+            },
+            Object {
+              "borderColor": "rgb(0, 122, 255)",
+              "borderWidth": 2,
+              "height": 24,
+              "width": 24,
+            },
+          ]
+        }
+      />
+    </View>
+    <View>
+      <Text
+        margin={null}
+        padding={null}
+        style={
+          Object {
+            "color": "rgb(28, 28, 30)",
+            "fontFamily": "Montserrat",
+            "fontSize": 18,
+            "fontWeight": "bold",
+            "letterSpacing": 0.15,
+          }
+        }
+        tertiary={false}
+        theme={Object {}}
+      />
+      <Text
+        margin={null}
+        padding={null}
+        style={
+          Object {
+            "color": "rgb(28, 28, 30)",
+            "fontFamily": "Montserrat",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "marginTop": 10,
+          }
+        }
+        tertiary={false}
+        theme={Object {}}
+      />
+    </View>
+  </View>
+</View>
+`;
